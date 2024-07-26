@@ -21,61 +21,6 @@ import 'package:sliver_tools/sliver_tools.dart';
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
-  Widget buildBody(BuildContext context, WidgetRef ref) {
-    final hasAnyProfile = ref.watch(hasAnyProfileProvider);
-    final activeProfile = ref.watch(activeProfileProvider);
-
-    final t = ref.watch(translationsProvider);
-    final addProfileState = ref.watch(addProfileProvider);
-
-    ref.listen(
-      addProfileProvider,
-      (previous, next) {
-        if (next case AsyncData(value: final _?)) {
-          WidgetsBinding.instance.addPostFrameCallback(
-            (_) {
-              // if (context.mounted) context.pop();
-            },
-          );
-        }
-      },
-    );
-    useMemoized(() async {
-      await Future.delayed(const Duration(milliseconds: 200));
-      String url =
-          "https://api.0009.uk/api/v1/client/subscribe?token=5652e3eec20c553047dbe3fcf8754090";
-      if (context.mounted) {
-        if (addProfileState.isLoading) return;
-        ref.read(addProfileProvider.notifier).add(url);
-      }
-    });
-    return CircularProgressIndicator();
-    /*return hasAnyProfile.when(
-      data: (hasAnyProfileValue) {
-        if (hasAnyProfileValue) {
-          // 如果 hasAnyProfile 的值为 true，返回 EmptyActiveProfileHomeBody 组件
-          // return const EmptyActiveProfileHomeBody();
-        } else {
-          // 否则，返回 EmptyProfilesHomeBody 组件
-          // return const EmptyProfilesHomeBody();
-          //这里自动粘贴
-          useMemoized(() async {
-            await Future.delayed(const Duration(milliseconds: 200));
-            String url =
-                "https://api.0009.uk/api/v1/client/subscribe?token=5652e3eec20c553047dbe3fcf8754090";
-            if (context.mounted) {
-              if (addProfileState.isLoading) return  CircularProgressIndicator();
-              ref.read(addProfileProvider.notifier).add(url);
-            }
-          });
-          return const EmptyProfilesHomeBody();
-        }
-      },
-      loading: () => const CircularProgressIndicator(), // 数据加载时显示的组件
-      error: (err, stack) => Text('Error: $err'), // 数据加载出错时显示的组件
-    );*/
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
@@ -83,35 +28,6 @@ class HomePage extends HookConsumerWidget {
     final activeProfile = ref.watch(activeProfileProvider);
 
     final addProfileState = ref.watch(addProfileProvider);
-
-    ref.listen(
-      addProfileProvider,
-      (previous, next) {
-        if (next case AsyncData(value: final _?)) {
-          WidgetsBinding.instance.addPostFrameCallback(
-            (_) {
-              print("addProfileProvider");
-              // if (context.mounted) context.pop();
-            },
-          );
-        }
-      },
-    );
-
-    useMemoized(() async {
-      await Future.delayed(const Duration(milliseconds: 200));
-
-      String url =
-          "https://api.0009.uk/api/v1/client/subscribe?token=5652e3eec20c553047dbe3fcf8754090";
-      if (context.mounted) {
-        if (addProfileState.isLoading) return;
-
-        if (hasAnyProfile.value == true) {
-        } else {
-          ref.read(addProfileProvider.notifier).add(url);
-        }
-      }
-    });
 
     return Scaffold(
       body: Stack(
