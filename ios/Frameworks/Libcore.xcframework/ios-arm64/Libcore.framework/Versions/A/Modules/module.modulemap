@@ -1,0 +1,9 @@
+framework module "Libcore" {
+	header "ref.h"
+    header "Libbox.objc.h"
+    header "Mobile.objc.h"
+    header "Universe.objc.h"
+    header "Libcore.h"
+
+    export *
+}
