@@ -165,6 +165,9 @@ class _ConnectionButton extends StatelessWidget {
                       if (useImage) {
                         return image.image(filterQuality: FilterQuality.medium);
                       } else {
+                        // return const Image(
+                        //   image: AssetImage('assets/images/logo.png'),
+                        // );
                         return Assets.images.logo.svg(
                           colorFilter: ColorFilter.mode(
                             value!,

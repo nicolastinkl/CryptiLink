@@ -82,6 +82,37 @@ class HomePage extends HookConsumerWidget {
     final hasAnyProfile = ref.watch(hasAnyProfileProvider);
     final activeProfile = ref.watch(activeProfileProvider);
 
+    final addProfileState = ref.watch(addProfileProvider);
+
+    ref.listen(
+      addProfileProvider,
+      (previous, next) {
+        if (next case AsyncData(value: final _?)) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              print("addProfileProvider");
+              // if (context.mounted) context.pop();
+            },
+          );
+        }
+      },
+    );
+
+    useMemoized(() async {
+      await Future.delayed(const Duration(milliseconds: 200));
+
+      String url =
+          "https://api.0009.uk/api/v1/client/subscribe?token=5652e3eec20c553047dbe3fcf8754090";
+      if (context.mounted) {
+        if (addProfileState.isLoading) return;
+
+        if (hasAnyProfile.value == true) {
+        } else {
+          ref.read(addProfileProvider.notifier).add(url);
+        }
+      }
+    });
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -143,8 +174,7 @@ class HomePage extends HookConsumerWidget {
                 AsyncData() => switch (hasAnyProfile) {
                     AsyncData(value: true) =>
                       const EmptyActiveProfileHomeBody(),
-                    // _ => const EmptyProfilesHomeBody(),
-                    _ => buildBody(context, ref),
+                    _ => const EmptyProfilesHomeBody(),
                   },
                 AsyncError(:final error) =>
                   SliverErrorBodyPlaceholder(t.presentShortError(error)),

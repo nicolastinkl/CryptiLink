@@ -36,7 +36,9 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/disconnect_norouz.PNG');
 
   /// File path: assets/images/logo.svg
-  SvgGenImage get logo => const SvgGenImage('assets/images/svg.png');
+  SvgGenImage get logo => const SvgGenImage('assets/images/logo.svg');
+
+  String get logopng => 'assets/images/logo.png';
 
   /// File path: assets/images/tray_icon.ico
   String get trayIconIco => 'assets/images/tray_icon.ico';
