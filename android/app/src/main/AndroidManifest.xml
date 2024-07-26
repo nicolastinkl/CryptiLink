@@ -24,12 +24,16 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+<!--    android:banner="@mipmap/ic_launcher"-->
+<!--    android:icon="@mipmap/ic_launcher"-->
+<!--    android:roundIcon="@mipmap/ic_launcher_round"-->
+
     <application
         android:name=".Application"
-        android:banner="@mipmap/ic_launcher"
         android:icon="@mipmap/ic_launcher"
+        android:banner="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:label="CryptiLink"
-        android:roundIcon="@mipmap/ic_launcher_round"
         tools:targetApi="31">
 
         <meta-data
