@@ -7,5 +7,5 @@ import 'package:hiddify/core/model/environment.dart';
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
-  return lazyBootstrap(widgetsBinding, Environment.dev);
+  return lazyBootstrap(widgetsBinding, Environment.prod);
 }

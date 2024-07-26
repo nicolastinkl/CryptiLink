@@ -69,7 +69,9 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
           checked: connection.isConnected,
           disabled: connection.isSwitching,
           onClick: (_) async {
-            await ref.read(connectionNotifierProvider.notifier).toggleConnection();
+            await ref
+                .read(connectionNotifierProvider.notifier)
+                .toggleConnection();
           },
         ),
         MenuItem.submenu(
@@ -84,7 +86,9 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
                   onClick: (menuItem) async {
                     final newMode = ServiceMode.values.byName(menuItem.key!);
                     loggy.debug("switching service mode: [$newMode]");
-                    await ref.read(ConfigOptions.serviceMode.notifier).update(newMode);
+                    await ref
+                        .read(ConfigOptions.serviceMode.notifier)
+                        .update(newMode);
                   },
                 ),
               ),
@@ -122,7 +126,8 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
 
   static String get _trayIconPath {
     if (Platform.isWindows) {
-      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      final Brightness brightness =
+          WidgetsBinding.instance.platformDispatcher.platformBrightness;
       bool isDarkMode = brightness == Brightness.dark;
       if (isDarkMode) {
         return Assets.images.trayIconIco;

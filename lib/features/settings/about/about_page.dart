@@ -122,7 +122,7 @@ class AboutPage extends HookConsumerWidget {
               ),
             ),
           ),
-          SliverList(
+          /*  SliverList(
             delegate: SliverChildListDelegate(
               [
                 ...conditionalTiles,
@@ -166,6 +166,7 @@ class AboutPage extends HookConsumerWidget {
               ],
             ),
           ),
+        */
         ],
       ),
     );
